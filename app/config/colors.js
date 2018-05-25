@@ -7,6 +7,9 @@ const originalColors = {
   greyhound: 'a1aebb'
 };
 
-const color = name => `#${originalColors[name]}`;
+const color = name =>
+  typeof originalColors[name] !== 'undefined'
+    ? `#${originalColors[name]}`
+    : name;
 
 export default color;

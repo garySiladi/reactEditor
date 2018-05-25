@@ -1,55 +1,72 @@
 // @flow
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import styled from 'styled-components';
 import getColor from '../config/colors';
+import { baseStep } from '../config/style-constants';
+import firebaseConfig from '../config/firebaseConfig';
 import ComponentSelector from './ComponentSelector';
+import TraitManager from './TraitManager';
+import WelcomeWindowContainer from '../containers/WelcomeWindowContainer';
 
-const MainViewWithStyle = styled.div`
+const MainViewStyled = styled.div`
   background: ${getColor('whitey')};
   color: ${getColor('secondary')};
   display: flex;
-  font-family: Quicksand;
+  font-family: Quicksand, sans-serif;
   height: 100vh;
   justify-content: space-between;
 `;
 
-const LeftSideWithStyle = styled.div`
+const LeftSideStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% - 200px);
 `;
 
-const UpperSideWithStyle = styled.div`
+const UpperSideStyled = styled.div`
   background: white;
   height: 100%;
 `;
 
-const LowerSideWithStyle = styled.div`
+const ComponentSelectorStyled = styled.div`
   flex: 0 0 200px;
   border-top: 1px solid ${getColor('greyhound')};
 `;
 
-const RightSideWithStyle = styled.div`
-  flex: 0 0 200px;
+const RightSideStyled = styled.div`
+  flex: 0 0 250px;
   border-left: 1px solid ${getColor('greyhound')};
+  padding: 0 ${baseStep(-2)};
 `;
 
 type Props = {};
 
 class MainViewComponent extends Component<Props> {
   props: Props;
+  componentDidMount() {
+    const fire = firebase.initializeApp(firebaseConfig); // eslint-disable-line
+  }
   render() {
     return (
-      <MainViewWithStyle>
-        <LeftSideWithStyle>
-          <UpperSideWithStyle>UPPER</UpperSideWithStyle>
-          <LowerSideWithStyle>
+      <MainViewStyled>
+        <LeftSideStyled>
+          <UpperSideStyled
+            onDragEnter={eve => {
+              console.log(eve.dataTransfer);
+            }}
+          >
+            <WelcomeWindowContainer />
+          </UpperSideStyled>
+          <ComponentSelectorStyled>
             <ComponentSelector />
-          </LowerSideWithStyle>
-        </LeftSideWithStyle>
-        <RightSideWithStyle>RIGHTSIDE</RightSideWithStyle>
-      </MainViewWithStyle>
+          </ComponentSelectorStyled>
+        </LeftSideStyled>
+        <RightSideStyled>
+          <TraitManager />
+        </RightSideStyled>
+      </MainViewStyled>
     );
   }
 }

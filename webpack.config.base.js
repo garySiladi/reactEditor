@@ -10,16 +10,22 @@ export default {
   externals: Object.keys(externals || {}),
 
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
         }
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
+        use: 'url-loader'
       }
-    }]
+    ]
   },
 
   output: {
@@ -33,10 +39,7 @@ export default {
    */
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
-    modules: [
-      path.join(__dirname, 'app'),
-      'node_modules',
-    ],
+    modules: [path.join(__dirname, 'app'), 'node_modules']
   },
 
   plugins: [
@@ -44,6 +47,6 @@ export default {
       NODE_ENV: 'production'
     }),
 
-    new webpack.NamedModulesPlugin(),
-  ],
+    new webpack.NamedModulesPlugin()
+  ]
 };

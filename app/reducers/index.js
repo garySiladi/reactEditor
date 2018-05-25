@@ -7,6 +7,8 @@ import bottomComponentsList from './bottomComponentsList';
 import bottomContainersList from './bottomContainersList';
 import bottomCustomList from './bottomCustomList';
 import bottomSelectedList from './bottomSelectedList';
+import selectedComponent from './selectedComponent';
+import isProjectOpened from './isProjectOpened';
 
 const rootReducer = combineReducers({
   // counter,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   bottomContainersList,
   bottomCustomList,
   bottomSelectedList,
+  selectedComponent,
+  isProjectOpened,
   router
 });
 

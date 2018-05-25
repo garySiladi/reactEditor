@@ -1,10 +1,10 @@
 // @flow
 import { connect } from 'react-redux';
 import { selectComponent } from '../actions/selectComponent';
-import ComponentSelectorList from '../components/ComponentSelectorList';
+import TraitList from '../components/TraitList';
 
 function mapStateToProps(state) {
-  return { bottomSelectedList: state.bottomSelectedList };
+  return { selectedComponent: state.selectedComponent };
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -13,6 +13,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  ComponentSelectorList
-);
+export default connect(mapStateToProps, mapDispatchToProps)(TraitList);
