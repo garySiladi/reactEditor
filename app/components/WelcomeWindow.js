@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import uniqueString from 'unique-string';
 import FontAwesome from 'react-fontawesome';
 import getColor from '../config/colors';
 import myImage from '../assets/plasmoid.png';
@@ -66,10 +67,15 @@ const StyledButton = styled.div`
 
 type Props = {
   isProjectOpened: boolean,
+  createProject: data => void,
   openProject: () => void
 };
 
 export default class WelcomeWindow extends Component<Props> {
+  handleClick = () => {
+    this.props.createProject({ projectName: 'myApp', id: uniqueString() });
+    this.props.openProject();
+  };
   render() {
     if (this.props.isProjectOpened) {
       return null;
@@ -80,7 +86,7 @@ export default class WelcomeWindow extends Component<Props> {
           <StyledLogo src={myImage} alt="App Logo" />
           <StyledHeaderComponent>Plasmoid</StyledHeaderComponent>
           <StyledMenu>
-            <StyledButton onClick={() => this.props.openProject()}>
+            <StyledButton onClick={() => this.handleClick()}>
               <FontAwesome name="plus" size="2x" />
               <span>New project</span>
             </StyledButton>

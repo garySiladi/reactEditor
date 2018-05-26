@@ -8,6 +8,7 @@ import firebaseConfig from '../config/firebaseConfig';
 import ComponentSelector from './ComponentSelector';
 import TraitManager from './TraitManager';
 import WelcomeWindowContainer from '../containers/WelcomeWindowContainer';
+import MainFrameHeaderContainer from '../containers/MainFrameHeaderContainer';
 
 const MainViewStyled = styled.div`
   background: ${getColor('whitey')};
@@ -52,12 +53,9 @@ class MainViewComponent extends Component<Props> {
     return (
       <MainViewStyled>
         <LeftSideStyled>
-          <UpperSideStyled
-            onDragEnter={eve => {
-              console.log(eve.dataTransfer);
-            }}
-          >
+          <UpperSideStyled>
             <WelcomeWindowContainer />
+            <MainFrameHeaderContainer />
           </UpperSideStyled>
           <ComponentSelectorStyled>
             <ComponentSelector />

@@ -9,6 +9,8 @@ import bottomCustomList from './bottomCustomList';
 import bottomSelectedList from './bottomSelectedList';
 import selectedComponent from './selectedComponent';
 import isProjectOpened from './isProjectOpened';
+import projectStructure from './projectStructure';
+import mainFrameSelector from './mainFrameSelector';
 
 const rootReducer = combineReducers({
   // counter,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   bottomSelectedList,
   selectedComponent,
   isProjectOpened,
+  projectStructure,
+  mainFrameSelector,
   router
 });
 

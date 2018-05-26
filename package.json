@@ -197,6 +197,8 @@
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-color": "^2.14.1",
+    "react-dnd": "^2.6.0",
+    "react-dnd-html5-backend": "^2.6.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "^4.0.0",
@@ -208,6 +210,7 @@
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.5.3",
     "styled-components": "^3.2.6",
+    "unique-string": "^1.0.0",
     "webfontloader": "^1.6.28"
   },
   "devEngines": {
