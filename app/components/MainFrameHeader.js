@@ -24,7 +24,7 @@ type Props = {
 const StyledHeaderCategoryWrapper = styled.div`
   padding: ${baseStep(-2)};
   display: flex;
-  background-color: ${getColor('whitey')};
+  flex-basis: 30px;
   border-bottom: 1px solid ${getColor('greyhound')};
 `;
 

@@ -43,3 +43,9 @@ declare module 'styled-components' {
 declare module 'react-fontawesome' {
   declare module.exports: any;
 }
+declare module 'react-dnd' {
+  declare module.exports: any;
+}
+declare module 'react-dnd-html5-backend' {
+  declare module.exports: any;
+}

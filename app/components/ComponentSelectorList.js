@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
+import DropComponent from './DropComponent';
 import { baseStep } from '../config/style-constants';
 import getColor from '../config/colors';
 import type { componentType } from '../types/component';
@@ -28,19 +29,24 @@ const getBoxStyling = dimension => `
 `;
 
 const StyledListComponent = styled.div`
-  background: ${getColor('secondary')};
-  margin-right: ${baseStep(0)};
-  padding: ${baseStep(0)};
-  text-align: center;
-  color: ${getColor('whitey')};
   ${getBoxStyling(80)};
-  border-radius: 10px;
   flex-direction: column;
   display: flex;
+  border-radius: 10px;
   justify-content: space-around;
   cursor: pointer;
-  flex: 0 0 auto;
+`;
+
+const StyledListComponentWrapper = styled.div`
+  ${getBoxStyling(80)};
+  padding: ${baseStep(0)};
+  background: ${getColor('secondary')};
+  margin-right: ${baseStep(0)};
   transition: transform 0.2s;
+  text-align: center;
+  color: ${getColor('whitey')};
+  border-radius: 10px;
+  flex: 0 0 auto;
 
   & :hover {
     transform: scale(1.1, 1.1);
@@ -53,17 +59,18 @@ class ComponentSelectorList extends Component<Props> {
     return (
       <StyledComponentSelectorList>
         {this.props.bottomSelectedList.map(child => (
-          <StyledListComponent
-            key={child.componentName}
-            onClick={() => {
-              this.props.selectComponent(child);
-            }}
-            draggable="true"
-            onDragStart={() => {}}
-          >
-            <FontAwesome name={child.componentIcon || 'square'} size="2x" />
-            {child.componentName}
-          </StyledListComponent>
+          <StyledListComponentWrapper key={child.componentName}>
+            <DropComponent>
+              <StyledListComponent
+                onClick={() => {
+                  this.props.selectComponent(child);
+                }}
+              >
+                <FontAwesome name={child.componentIcon || 'square'} size="2x" />
+                {child.componentName}
+              </StyledListComponent>
+            </DropComponent>
+          </StyledListComponentWrapper>
         ))}
       </StyledComponentSelectorList>
     );

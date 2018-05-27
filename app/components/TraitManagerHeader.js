@@ -7,7 +7,6 @@ const StyledHeader = styled.div`
   font-family: Titillium Web;
   padding: ${baseStep(-2)};
   ${getTypography(-1)};
-  background-color: ${getColor('whitey')};
   border-bottom: 1px solid ${getColor('secondary')};
   color: ${getColor('secondary')};
 `;

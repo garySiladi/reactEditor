@@ -4,13 +4,13 @@ import { CREATE_PROJECT } from '../actions/projectStructure';
 const initialProjectInfo = {
   projectName: 'sample_project',
   id: '0',
-  hierarchy: []
+  hierarchy: {}
 };
 
 type initialProjectInfoType = {
   projectName: string,
   id: string,
-  hierarchy: Array<any>
+  hierarchy: any
 };
 
 export default function projectStructure(

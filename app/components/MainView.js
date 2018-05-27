@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import styled from 'styled-components';
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import getColor from '../config/colors';
 import { baseStep } from '../config/style-constants';
 import firebaseConfig from '../config/firebaseConfig';
@@ -9,9 +11,10 @@ import ComponentSelector from './ComponentSelector';
 import TraitManager from './TraitManager';
 import WelcomeWindowContainer from '../containers/WelcomeWindowContainer';
 import MainFrameHeaderContainer from '../containers/MainFrameHeaderContainer';
+import PlasmaEditorContainer from '../containers/PlasmaEditorContainer';
 
 const MainViewStyled = styled.div`
-  background: ${getColor('whitey')};
+  background: ${getColor('toolbar')};
   color: ${getColor('secondary')};
   display: flex;
   font-family: Quicksand, sans-serif;
@@ -24,11 +27,6 @@ const LeftSideStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% - 200px);
-`;
-
-const UpperSideStyled = styled.div`
-  background: white;
-  height: 100%;
 `;
 
 const ComponentSelectorStyled = styled.div`
@@ -52,15 +50,16 @@ class MainViewComponent extends Component<Props> {
   render() {
     return (
       <MainViewStyled>
-        <LeftSideStyled>
-          <UpperSideStyled>
+        <DragDropContextProvider backend={HTML5Backend}>
+          <LeftSideStyled>
             <WelcomeWindowContainer />
             <MainFrameHeaderContainer />
-          </UpperSideStyled>
-          <ComponentSelectorStyled>
-            <ComponentSelector />
-          </ComponentSelectorStyled>
-        </LeftSideStyled>
+            <PlasmaEditorContainer />
+            <ComponentSelectorStyled>
+              <ComponentSelector />
+            </ComponentSelectorStyled>
+          </LeftSideStyled>
+        </DragDropContextProvider>
         <RightSideStyled>
           <TraitManager />
         </RightSideStyled>

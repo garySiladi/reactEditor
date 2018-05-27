@@ -4,6 +4,7 @@ const originalColors = {
   accent: '848c8e',
   greyish: 'ccdbdc',
   whitey: 'eff7ff',
+  toolbar: 'd2dde8',
   greyhound: 'a1aebb'
 };
 
