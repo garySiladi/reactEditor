@@ -191,10 +191,13 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "@taoqf/array-to-tree": "^0.0.3",
+    "array2tree": "^1.0.0",
     "devtron": "^1.4.0",
     "electron-debug": "^1.5.0",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "performant-array-to-tree": "^1.1.2",
     "react": "^16.2.0",
     "react-color": "^2.14.1",
     "react-dnd": "^2.6.0",

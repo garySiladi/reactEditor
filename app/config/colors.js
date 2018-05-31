@@ -5,7 +5,8 @@ const originalColors = {
   greyish: 'ccdbdc',
   whitey: 'eff7ff',
   toolbar: 'd2dde8',
-  greyhound: 'a1aebb'
+  greyhound: 'a1aebb',
+  orange: 'f26363'
 };
 
 const color = name =>

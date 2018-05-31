@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
-import DropComponent from './DropComponent';
+import DropComponentWrapper from '../containers/DropComponentWrapper';
 import { baseStep } from '../config/style-constants';
 import getColor from '../config/colors';
 import type { componentType } from '../types/component';
@@ -60,7 +60,7 @@ class ComponentSelectorList extends Component<Props> {
       <StyledComponentSelectorList>
         {this.props.bottomSelectedList.map(child => (
           <StyledListComponentWrapper key={child.componentName}>
-            <DropComponent>
+            <DropComponentWrapper {...child}>
               <StyledListComponent
                 onClick={() => {
                   this.props.selectComponent(child);
@@ -69,7 +69,7 @@ class ComponentSelectorList extends Component<Props> {
                 <FontAwesome name={child.componentIcon || 'square'} size="2x" />
                 {child.componentName}
               </StyledListComponent>
-            </DropComponent>
+            </DropComponentWrapper>
           </StyledListComponentWrapper>
         ))}
       </StyledComponentSelectorList>

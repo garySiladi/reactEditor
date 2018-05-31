@@ -3,6 +3,7 @@ export default [
     componentName: 'Horizontal',
     componentIcon: 'ellipsis-h',
     componentHTMLTag: 'div',
+    type: 'container',
     componentID: 3,
     traits: [{ color: 'FFFFFF' }]
   },
@@ -10,6 +11,7 @@ export default [
     componentName: 'Vertical',
     componentIcon: 'ellipsis-v',
     componentHTMLTag: 'div',
+    type: 'container',
     componentID: 4,
     traits: [{ color: 'FFFFFF' }]
   }

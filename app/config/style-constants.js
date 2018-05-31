@@ -10,3 +10,7 @@ export const getTypography = level => {
     line-height: ${calculatedLineHeight}rem;
 `;
 };
+export const horizontalViewName = `
+  position: absolute;
+  top: 0;
+`;

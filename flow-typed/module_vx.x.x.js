@@ -49,3 +49,9 @@ declare module 'react-dnd' {
 declare module 'react-dnd-html5-backend' {
   declare module.exports: any;
 }
+declare module 'unique-string' {
+  declare module.exports: any;
+}
+declare module 'performant-array-to-tree' {
+  declare module.exports: any;
+}

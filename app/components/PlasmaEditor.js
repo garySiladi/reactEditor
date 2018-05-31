@@ -1,41 +1,61 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { arrayToTree } from 'performant-array-to-tree';
+// import type { hierarchyComponentType } from '../reducers/projectStructure';
 import getColor from '../config/colors';
-// import { baseStep } from '../config/style-constants';
-import DropEditor from './DropEditor';
-// import DropComponent from './DropComponent';
+import DropTargetComponentWrapper from '../containers/DropTargetComponentWrapper';
+
+// background-size: 10px 10px;
+//   background-image: linear-gradient(
+//       to right,
+//       ${getColor('greyish')},
+//       1px,
+//       transparent 1px
+//     ),
+//     linear-gradient(to bottom, ${getColor('greyish')}, 1px, transparent 1px);
 
 const PlasmaEditorStyled = styled.div`
   background: white;
   color: ${getColor('primary')};
   flex-basis: 100vh;
   box-shadow: inset 0px 0px 0px 5px white;
-  background-size: 10px 10px;
-  background-image: linear-gradient(
-      to right,
-      ${getColor('greyish')},
-      1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, ${getColor('greyish')}, 1px, transparent 1px);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 type Props = {
-  isPlasmaSelected: boolean
+  isPlasmaSelected: boolean,
+  hierarchy: any
 };
 
 export default class PlasmaEditor extends Component<Props> {
+  createList = (component: any) => {
+    const { data } = component;
+    const { viewName, id, type, parentId } = data;
+    const componentProps = {
+      viewName,
+      type,
+      key: id,
+      id,
+      parentId
+    };
+    return React.createElement(
+      DropTargetComponentWrapper,
+      { ...componentProps },
+      component.children.map(element => this.createList(element))
+    );
+  };
+
   render() {
+    const hierarchyArray = arrayToTree(this.props.hierarchy);
     if (!this.props.isPlasmaSelected)
       return <PlasmaEditorStyled>KORTE</PlasmaEditorStyled>;
     return (
       <PlasmaEditorStyled>
         <div style={{ overflow: 'hidden', clear: 'both' }}>
-          <DropEditor />
+          {this.createList(hierarchyArray[0])}
         </div>
       </PlasmaEditorStyled>
     );

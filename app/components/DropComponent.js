@@ -1,16 +1,24 @@
 // @flow
 import * as React from 'react';
+import uniqueString from 'unique-string';
 import { DragSource } from 'react-dnd';
 
 const boxSource = {
   beginDrag: props => props,
 
   endDrag(props, monitor) {
-    const item = monitor.getItem();
+    // const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-
-    if (dropResult) {
-      alert(`You dropped ${item.name} into ${dropResult.name}!`); // eslint-disable-line no-alert
+    // console.log(dropResult);
+    // const isOver = monitor.isOver({ shallow: true });
+    if (dropResult && dropResult.type === 'container') {
+      props.addComponent({
+        viewName: props.componentName,
+        id: uniqueString(),
+        type: props.type,
+        componentData: props.traits,
+        parentId: dropResult.id
+      });
     }
   }
 };
