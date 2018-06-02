@@ -6,15 +6,6 @@ import { arrayToTree } from 'performant-array-to-tree';
 import getColor from '../config/colors';
 import DropTargetComponentWrapper from '../containers/DropTargetComponentWrapper';
 
-// background-size: 10px 10px;
-//   background-image: linear-gradient(
-//       to right,
-//       ${getColor('greyish')},
-//       1px,
-//       transparent 1px
-//     ),
-//     linear-gradient(to bottom, ${getColor('greyish')}, 1px, transparent 1px);
-
 const PlasmaEditorStyled = styled.div`
   background: white;
   color: ${getColor('primary')};
@@ -33,13 +24,15 @@ type Props = {
 export default class PlasmaEditor extends Component<Props> {
   createList = (component: any) => {
     const { data } = component;
-    const { viewName, id, type, parentId } = data;
+    const { viewName, id, type, parentID, componentID, componentData } = data;
     const componentProps = {
       viewName,
       type,
       key: id,
       id,
-      parentId
+      parentID,
+      componentID,
+      componentData
     };
     return React.createElement(
       DropTargetComponentWrapper,
@@ -49,7 +42,10 @@ export default class PlasmaEditor extends Component<Props> {
   };
 
   render() {
-    const hierarchyArray = arrayToTree(this.props.hierarchy);
+    const hierarchyArray = arrayToTree(this.props.hierarchy, {
+      id: 'id',
+      parentId: 'parentID'
+    });
     if (!this.props.isPlasmaSelected)
       return <PlasmaEditorStyled>KORTE</PlasmaEditorStyled>;
     return (

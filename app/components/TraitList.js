@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { ChromePicker } from 'react-color';
 import getColor from '../config/colors';
+import TraitColor from './TraitColor';
+import TraitPadding from './TraitPadding';
 import { getTypography, baseStep } from '../config/style-constants';
 import type { componentType } from '../types/component';
 
@@ -12,6 +13,8 @@ type Props = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  margin-top: ${baseStep(-2)};
 `;
 
 const StyledDiv = styled.div`
@@ -20,21 +23,36 @@ const StyledDiv = styled.div`
   margin: ${baseStep(-2)} 0 0;
   ${getTypography(-1)};
   background-color: ${getColor('white')};
-  border: 1px solid ${getColor('greyhound')};
+  border-radius: 5px;
   color: ${getColor('secondary')};
 `;
+
+const EmptyDiv = styled.div`
+  font-family: Titillium Web;
+  align-self: center;
+  top: 50%;
+  position: absolute;
+  color: ${getColor('ashes')};
+`;
+
+const traitWrapper = { color: TraitColor, padding: TraitPadding };
 
 export default class TraitList extends Component<Props> {
   render() {
     const { selectedComponent } = this.props;
+    if (!selectedComponent.componentData)
+      return (
+        <StyledContainer>
+          <EmptyDiv>No component selected</EmptyDiv>
+        </StyledContainer>
+      );
     const traits =
-      selectedComponent.traits &&
-      this.props.selectedComponent.traits.map(element => {
-        console.log(element.color);
+      selectedComponent.componentData &&
+      selectedComponent.componentData.map(element => {
+        const TraitComponent = traitWrapper[element.name] || <div>und</div>;
         return (
-          <StyledDiv key={element.color}>
-            {element.color}
-            <ChromePicker />
+          <StyledDiv key={element.name}>
+            <TraitComponent />
           </StyledDiv>
         );
       });

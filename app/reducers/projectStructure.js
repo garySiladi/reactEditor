@@ -1,7 +1,8 @@
 // @flow
 import {
   CREATE_PROJECT,
-  ADD_COMPONENT_GRID
+  ADD_COMPONENT_GRID,
+  REMOVE_COMPONENT_GRID
 } from '../actions/projectStructure';
 
 const initialProjectInfo = {
@@ -12,8 +13,8 @@ const initialProjectInfo = {
       viewName: ' ',
       id: '0',
       type: 'container',
-      componentData: {},
-      parentId: null
+      componentData: [],
+      parentID: null
     }
   ]
 };
@@ -23,7 +24,8 @@ export type hierarchyComponentType = {
   id: string,
   type: string,
   componentData: any,
-  parentId: ?string
+  parentID: ?string,
+  componentID?: any
 };
 
 type initialProjectInfoType = {
@@ -43,6 +45,19 @@ export default function projectStructure(
       return Object.assign({}, state, {
         hierarchy: [...state.hierarchy, action.data]
       });
+    case REMOVE_COMPONENT_GRID: {
+      const { hierarchy } = state;
+      const foundItem = hierarchy.find(item => item.id === action.data);
+      if (!foundItem) {
+        return state;
+      }
+      return Object.assign({}, state, {
+        hierarchy: [
+          ...state.hierarchy.slice(0, hierarchy.indexOf(foundItem)),
+          ...state.hierarchy.slice(hierarchy.indexOf(foundItem) + 1)
+        ]
+      });
+    }
     default:
       return state;
   }

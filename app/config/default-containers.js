@@ -5,7 +5,10 @@ export default [
     componentHTMLTag: 'div',
     type: 'container',
     componentID: 3,
-    traits: [{ color: 'FFFFFF' }]
+    traits: [
+      { name: 'color', value: 'FFFFFF' },
+      { name: 'padding', value: '1em' }
+    ]
   },
   {
     componentName: 'Vertical',
@@ -13,6 +16,9 @@ export default [
     componentHTMLTag: 'div',
     type: 'container',
     componentID: 4,
-    traits: [{ color: 'FFFFFF' }]
+    traits: [
+      { name: 'color', value: 'FFFFFF' },
+      { name: 'padding', value: '1em' }
+    ]
   }
 ];

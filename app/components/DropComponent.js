@@ -7,17 +7,15 @@ const boxSource = {
   beginDrag: props => props,
 
   endDrag(props, monitor) {
-    // const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    // console.log(dropResult);
-    // const isOver = monitor.isOver({ shallow: true });
     if (dropResult && dropResult.type === 'container') {
       props.addComponent({
         viewName: props.componentName,
+        componentID: props.componentID,
         id: uniqueString(),
         type: props.type,
         componentData: props.traits,
-        parentId: dropResult.id
+        parentID: dropResult.id
       });
     }
   }

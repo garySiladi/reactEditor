@@ -8,8 +8,7 @@ import getColor from '../config/colors';
 import type { componentType } from '../types/component';
 
 type Props = {
-  bottomSelectedList: Array<componentType>,
-  selectComponent: (child: componentType) => {}
+  bottomSelectedList: Array<componentType>
 };
 
 const StyledComponentSelectorList = styled.div`
@@ -61,11 +60,7 @@ class ComponentSelectorList extends Component<Props> {
         {this.props.bottomSelectedList.map(child => (
           <StyledListComponentWrapper key={child.componentName}>
             <DropComponentWrapper {...child}>
-              <StyledListComponent
-                onClick={() => {
-                  this.props.selectComponent(child);
-                }}
-              >
+              <StyledListComponent>
                 <FontAwesome name={child.componentIcon || 'square'} size="2x" />
                 {child.componentName}
               </StyledListComponent>

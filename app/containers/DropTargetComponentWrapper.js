@@ -1,6 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { selectMainframeCategory } from '../actions/mainFrameHeader';
+import { selectComponent } from '../actions/selectComponent';
 import DropTargetComponent from '../components/DropTargetComponent';
 
 function mapStateToProps(state) {
@@ -12,6 +13,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   selectMainframeCategory: category => {
     dispatch(selectMainframeCategory(category));
+  },
+  selectComponent: component => {
+    dispatch(selectComponent(component));
   }
 });
 

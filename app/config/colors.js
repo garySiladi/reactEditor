@@ -6,7 +6,9 @@ const originalColors = {
   whitey: 'eff7ff',
   toolbar: 'd2dde8',
   greyhound: 'a1aebb',
-  orange: 'f26363'
+  orange: 'f26363',
+  slightGrey: '435043',
+  ashes: 'c4d0dc'
 };
 
 const color = name =>

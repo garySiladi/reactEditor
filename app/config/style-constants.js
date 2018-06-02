@@ -14,3 +14,7 @@ export const horizontalViewName = `
   position: absolute;
   top: 0;
 `;
+export const emptyRootDimensions = `
+  width: 100px;
+  height: 100px;
+`;

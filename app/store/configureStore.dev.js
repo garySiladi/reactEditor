@@ -6,6 +6,10 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 // import * as counterActions from '../actions/counter';
 import * as componentSelectorHeaderActions from '../actions/componentSelectorHeader';
+import * as isProjectOpenedActions from '../actions/isProjectOpened';
+import * as mainFrameHeaderActions from '../actions/mainFrameHeader';
+import * as projectStructureActions from '../actions/projectStructure';
+import * as selectComponentActions from '../actions/selectComponent';
 // import type { counterStateType } from '../reducers/counter';
 // import type { Store, State } from '../types';
 
@@ -38,7 +42,11 @@ const configureStore = initialState => {
   const actionCreators = {
     // ...counterActions,
     ...componentSelectorHeaderActions,
-    ...routerActions
+    ...routerActions,
+    ...isProjectOpenedActions,
+    ...mainFrameHeaderActions,
+    ...projectStructureActions,
+    ...selectComponentActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
