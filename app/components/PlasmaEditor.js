@@ -36,7 +36,7 @@ export default class PlasmaEditor extends Component<Props> {
     };
     return React.createElement(
       DropTargetComponentWrapper,
-      { ...componentProps },
+      componentProps,
       component.children.map(element => this.createList(element))
     );
   };

@@ -6,7 +6,7 @@ export default [
     type: 'container',
     componentID: 3,
     traits: [
-      { name: 'color', value: 'FFFFFF' },
+      { name: 'color', value: '#FFFFFF' },
       { name: 'padding', value: '1em' }
     ]
   },
@@ -17,7 +17,7 @@ export default [
     type: 'container',
     componentID: 4,
     traits: [
-      { name: 'color', value: 'FFFFFF' },
+      { name: 'color', value: '#FFFFFF' },
       { name: 'padding', value: '1em' }
     ]
   }

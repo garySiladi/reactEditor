@@ -5,7 +5,7 @@ export default [
     componentID: 1,
     type: 'component',
     componentHTMLTag: 'button',
-    traits: [{ name: 'color', value: 'FFFFFF' }]
+    traits: [{ name: 'color', value: '#FFFFFF' }]
   },
   {
     componentName: 'Text',
@@ -14,8 +14,8 @@ export default [
     type: 'component',
     componentHTMLTag: 'span',
     traits: [
-      { name: 'color', value: 'FFFFFF' },
-      { name: 'padding', value: '1em' }
+      { name: 'color', value: '#FFFFFF' },
+      { name: 'padding', value: '4em' }
     ]
   }
 ];

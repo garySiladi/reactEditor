@@ -1,6 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { selectComponent } from '../actions/selectComponent';
+import { removeComponent } from '../actions/projectStructure';
 import TraitList from '../components/TraitList';
 
 function mapStateToProps(state) {
@@ -10,6 +11,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   selectComponent: component => {
     dispatch(selectComponent(component));
+  },
+  removeComponent: id => {
+    dispatch(removeComponent(id));
   }
 });
 

@@ -2,7 +2,8 @@
 import {
   CREATE_PROJECT,
   ADD_COMPONENT_GRID,
-  REMOVE_COMPONENT_GRID
+  REMOVE_COMPONENT_GRID,
+  UPDATE_COMPONENT_GRID
 } from '../actions/projectStructure';
 
 const initialProjectInfo = {
@@ -28,11 +29,31 @@ export type hierarchyComponentType = {
   componentID?: any
 };
 
-type initialProjectInfoType = {
+export type initialProjectInfoType = {
   projectName: string,
   id: string,
   hierarchy: Array<hierarchyComponentType>
 };
+
+const getResult = (id, hierarchy = []) => {
+  const foundChildren = hierarchy.filter(item => item.parentID === id);
+  if (foundChildren === []) return id;
+  const foundChildrenIDs = foundChildren.map(item => item.id);
+  if (foundChildrenIDs.length === 1) {
+    // $FlowFixMe
+    return getResult(foundChildrenIDs[0]).concat(id);
+  }
+  return foundChildrenIDs.map(idX => getResult(idX)).concat(id);
+};
+
+function flattenDeep(id, hierarchy) {
+  // $FlowFixMe
+  return getResult(id, hierarchy).reduce(
+    (acc, val) =>
+      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
+    []
+  );
+}
 
 export default function projectStructure(
   state: initialProjectInfoType = initialProjectInfo,
@@ -47,15 +68,16 @@ export default function projectStructure(
       });
     case REMOVE_COMPONENT_GRID: {
       const { hierarchy } = state;
-      const foundItem = hierarchy.find(item => item.id === action.data);
-      if (!foundItem) {
-        return state;
-      }
+      const newHierarchy = hierarchy.filter(
+        item => !flattenDeep(action.data, hierarchy).some(id => id === item.id)
+      );
       return Object.assign({}, state, {
-        hierarchy: [
-          ...state.hierarchy.slice(0, hierarchy.indexOf(foundItem)),
-          ...state.hierarchy.slice(hierarchy.indexOf(foundItem) + 1)
-        ]
+        hierarchy: newHierarchy
+      });
+    }
+    case UPDATE_COMPONENT_GRID: {
+      return Object.assign({}, state, {
+        hierarchy: action.data
       });
     }
     default:

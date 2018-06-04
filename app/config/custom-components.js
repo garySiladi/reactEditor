@@ -4,7 +4,7 @@ export default [
     componentHTMLTag: 'button',
     type: 'component',
     componentID: 5,
-    traits: [{ name: 'color', value: 'FFFFFF' }]
+    traits: [{ name: 'color', value: '#FFFFFF' }]
   },
   {
     componentName: '<Text />',
@@ -12,7 +12,7 @@ export default [
     type: 'component',
     componentID: 6,
     traits: [
-      { name: 'color', value: 'FFFFFF' },
+      { name: 'color', value: '#FFFFFF' },
       { name: 'padding', value: '1em' }
     ]
   }
