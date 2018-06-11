@@ -5,13 +5,14 @@ import styled from 'styled-components';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import getColor from '../config/colors';
-import { baseStep } from '../config/style-constants';
-import firebaseConfig from '../config/firebaseConfig';
+// import { baseStep } from '../config/style-constants';
+// import firebaseConfig from '../config/firebaseConfig';
 import ComponentSelector from './ComponentSelector';
 import TraitManager from './TraitManager';
 import WelcomeWindowContainer from '../containers/WelcomeWindowContainer';
 import MainFrameHeaderContainer from '../containers/MainFrameHeaderContainer';
 import PlasmaEditorContainer from '../containers/PlasmaEditorContainer';
+import LivePreviewContainer from '../containers/LivePreviewContainer';
 
 const MainViewStyled = styled.div`
   background: ${getColor('toolbar')};
@@ -37,7 +38,6 @@ const ComponentSelectorStyled = styled.div`
 const RightSideStyled = styled.div`
   flex: 0 0 250px;
   border-left: 1px solid ${getColor('greyhound')};
-  padding: 0 ${baseStep(-2)} ${baseStep(-2)};
   display: flex;
   flex-direction: column;
 `;
@@ -64,6 +64,7 @@ class MainViewComponent extends Component<Props> {
         </DragDropContextProvider>
         <RightSideStyled>
           <TraitManager />
+          <LivePreviewContainer />
         </RightSideStyled>
       </MainViewStyled>
     );

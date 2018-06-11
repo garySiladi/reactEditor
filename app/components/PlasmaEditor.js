@@ -24,7 +24,15 @@ type Props = {
 export default class PlasmaEditor extends Component<Props> {
   createList = (component: any) => {
     const { data } = component;
-    const { viewName, id, type, parentID, componentID, componentData } = data;
+    const {
+      viewName,
+      id,
+      type,
+      parentID,
+      componentID,
+      componentData,
+      componentHTMLTag
+    } = data;
     const componentProps = {
       viewName,
       type,
@@ -32,7 +40,8 @@ export default class PlasmaEditor extends Component<Props> {
       id,
       parentID,
       componentID,
-      componentData
+      componentData,
+      componentHTMLTag
     };
     return React.createElement(
       DropTargetComponentWrapper,

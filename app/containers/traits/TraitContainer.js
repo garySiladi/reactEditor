@@ -2,10 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { changeComponentTrait } from '../../actions/selectComponent';
-import TraitColor from '../../components/traits/TraitColor';
-import TraitPadding from '../../components/traits/TraitPadding';
-
-const traitComponents = { color: TraitColor, padding: TraitPadding };
+import { traits } from '../../components/traits';
 
 function mapStateToProps(state, ownProps) {
   const foundObject = state.selectedComponent.componentData.find(
@@ -29,7 +26,7 @@ type Props = {
 
 class TraitContainer extends React.Component<Props> {
   render() {
-    const Comp = traitComponents[this.props.traitName];
+    const Comp = traits[this.props.traitName];
     return <Comp {...this.props} />;
   }
 }

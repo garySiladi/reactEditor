@@ -9,12 +9,14 @@ import {
 const initialProjectInfo = {
   projectName: 'sample_project',
   id: '0',
+  author: 'Gary Siladi',
   hierarchy: [
     {
       viewName: ' ',
       id: '0',
       type: 'container',
       componentData: [],
+      componentHTMLTag: 'div',
       parentID: null
     }
   ]
@@ -26,7 +28,8 @@ export type hierarchyComponentType = {
   type: string,
   componentData: any,
   parentID: ?string,
-  componentID?: any
+  componentID?: any,
+  componentHTMLTag?: any
 };
 
 export type initialProjectInfoType = {

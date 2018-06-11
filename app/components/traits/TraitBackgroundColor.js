@@ -19,9 +19,9 @@ const StyledDiv = styled.div`
   }
 `;
 
-class TraitColor extends React.Component<traitProps> {
+class TraitBackgroundColor extends React.Component<traitProps> {
   handleChange = event => {
-    this.props.changeComponentTrait('color', event.target.value);
+    this.props.changeComponentTrait('backgroundColor', event.target.value);
   };
   render() {
     return (
@@ -36,4 +36,4 @@ class TraitColor extends React.Component<traitProps> {
   }
 }
 
-export default TraitColor;
+export default TraitBackgroundColor;

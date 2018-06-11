@@ -24,13 +24,15 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: ${props => (props.isHorizontal ? 'row' : 'column')};
   align-items: stretch;
-  justify-content: ${props => (props.hasChildren ? 'center' : 'start')};
+  justify-content: ${props =>
+    props.hasChildren || !props.isRoot ? 'center' : 'start'};
   ${props => props.isRoot && !props.hasChildren && emptyRootDimensions}
   border: 1px solid ${getColor('white')};
   transition: 0.2s background-color;
   border-radius: 5px;
   background-color: ${props =>
     getColor(props.isActive ? 'primary' : 'secondary')};
+  ${props => props.isSelectedComponent && `border-style: dashed;`};
   ${props =>
     props.isMouseOver && `background-color: ${getColor('slightGrey')}`};
   cursor: pointer;
@@ -80,9 +82,11 @@ type Props = {
   children: Array<React.Node>,
   componentData: Array<any>,
   selectComponent: (data: hierarchyComponentType) => {},
+  selectedComponent: any,
   id: string,
   componentID: ?number,
-  parentID: ?string
+  parentID: ?string,
+  componentHTMLTag?: string
 };
 
 type State = {
@@ -111,7 +115,8 @@ class DropTargetComponent extends React.Component<Props, State> {
       viewName,
       componentData = [],
       type,
-      parentID
+      parentID,
+      componentHTMLTag = 'span'
     } = this.props;
     selectComponent({
       id,
@@ -119,7 +124,8 @@ class DropTargetComponent extends React.Component<Props, State> {
       componentData,
       viewName,
       type,
-      parentID
+      parentID,
+      componentHTMLTag
     });
   };
 
@@ -130,7 +136,9 @@ class DropTargetComponent extends React.Component<Props, State> {
       connectDropTarget,
       children = [],
       viewName,
-      type
+      type,
+      selectedComponent,
+      id
     } = this.props;
     const { isMouseOver } = this.state;
     const isContainer = type === 'container';
@@ -138,6 +146,7 @@ class DropTargetComponent extends React.Component<Props, State> {
     const isHorizontal = isContainer && viewName === 'Horizontal';
     const isActive = canDrop && isOver && isContainer;
     const hasChildren = children.length !== 0;
+    const isSelectedComponent = selectedComponent.id === id;
     const divProps = {
       isRoot,
       isActive,
@@ -145,7 +154,8 @@ class DropTargetComponent extends React.Component<Props, State> {
       isHorizontal,
       hasChildren,
       isOver,
-      isMouseOver
+      isMouseOver,
+      isSelectedComponent
     };
     return connectDropTarget(
       <div>

@@ -15,6 +15,7 @@ const boxSource = {
         id: uniqueString(),
         type: props.type,
         componentData: props.traits,
+        componentHTMLTag: props.componentHTMLTag,
         parentID: dropResult.id
       });
     }

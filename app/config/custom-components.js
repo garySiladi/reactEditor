@@ -13,7 +13,7 @@ export default [
     componentID: 6,
     traits: [
       { name: 'color', value: '#FFFFFF' },
-      { name: 'padding', value: '1em' }
+      { name: 'padding', value: '0.2' }
     ]
   }
 ];

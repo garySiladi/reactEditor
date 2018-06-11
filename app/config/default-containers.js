@@ -7,7 +7,9 @@ export default [
     componentID: 3,
     traits: [
       { name: 'color', value: '#FFFFFF' },
-      { name: 'padding', value: '1em' }
+      { name: 'display', value: 'flex' },
+      { name: 'flexDirection', value: 'row' },
+      { name: 'padding', value: '0.2' }
     ]
   },
   {
@@ -18,7 +20,9 @@ export default [
     componentID: 4,
     traits: [
       { name: 'color', value: '#FFFFFF' },
-      { name: 'padding', value: '1em' }
+      { name: 'display', value: 'flex' },
+      { name: 'flexDirection', value: 'column' },
+      { name: 'padding', value: '0.2' }
     ]
   }
 ];

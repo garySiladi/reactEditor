@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import getColor from '../config/colors';
-// import getTraitComponent from './traits';
+import { traitViewnames } from './traits';
 import TraitComponent from '../containers/traits/TraitContainer';
 import { getTypography, baseStep } from '../config/style-constants';
 import type { componentType } from '../types/component';
 
 type Props = {
-  selectedComponent: componentType | {}
+  selectedComponent: componentType | {},
+  removeComponent: string => {}
 };
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   margin-top: ${baseStep(-2)};
+  position: relative;
 `;
 
 const StyledDiv = styled.div`
@@ -27,6 +28,7 @@ const StyledDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 5px;
 `;
 
 const TraitHeader = styled.div`
@@ -44,6 +46,22 @@ const EmptyDiv = styled.div`
   color: ${getColor('ashes')};
 `;
 
+const DeletionDiv = styled.div`
+  font-family: Titillium Web;
+  ${getTypography(-1)};
+  text-align: center;
+  cursor: pointer;
+  margin: ${baseStep(0)};
+  padding: ${baseStep(-3)};
+  background: ${getColor('orange')};
+  color: ${getColor('white')};
+  transition: 0.2s;
+
+  &:hover {
+    background: ${getColor('darkOrange')};
+  }
+`;
+
 export default class TraitList extends Component<Props> {
   render() {
     const { selectedComponent } = this.props;
@@ -56,30 +74,26 @@ export default class TraitList extends Component<Props> {
     const traits =
       selectedComponent.componentData &&
       selectedComponent.componentData.map(element => {
-        // const TraitComponent = getTraitComponent(element.name);
-        return (
-          <StyledDiv key={element.name}>
-            <TraitHeader>{element.name.toUpperCase()}</TraitHeader>
-            <TraitComponent traitName={element.name} />
-          </StyledDiv>
-        );
+        if (traitViewnames[element.name]) {
+          return (
+            <StyledDiv key={element.name}>
+              <TraitHeader>{traitViewnames[element.name]}</TraitHeader>
+              <TraitComponent traitName={element.name} />
+            </StyledDiv>
+          );
+        }
+        return null;
       });
     return (
-      <StyledContainer>
+      <StyledContainer key={selectedComponent.id}>
         {traits}
-        <div
+        <DeletionDiv
           onClick={() => {
             this.props.removeComponent(selectedComponent.id);
           }}
-          style={{
-            margin: '1em',
-            padding: '0.5em',
-            background: '#d66262',
-            color: 'white'
-          }}
         >
           DELETE COMPONENT
-        </div>
+        </DeletionDiv>
       </StyledContainer>
     );
   }

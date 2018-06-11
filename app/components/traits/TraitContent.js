@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+// import { baseStep } from '../../config/style-constants';
 import getColor from '../../config/colors';
 import { traitProps } from '.';
 
@@ -8,10 +9,7 @@ const StyledDiv = styled.div`
   align-items: center;
 
   & input {
-    border: none;
-    background: transparent;
-    max-width: 150px;
-    max-height: 20px;
+    max-width: 200px;
 
     &::selection {
       background: ${getColor('primary')};
@@ -19,16 +17,16 @@ const StyledDiv = styled.div`
   }
 `;
 
-class TraitColor extends React.Component<traitProps> {
+class TraitContent extends React.Component<traitProps> {
   handleChange = event => {
-    this.props.changeComponentTrait('color', event.target.value);
+    this.props.changeComponentTrait('content', event.target.value);
   };
   render() {
     return (
       <StyledDiv>
         <input
-          type="color"
-          value={this.props.traitValue}
+          type="text"
+          defaultValue={this.props.traitValue}
           onChange={this.handleChange}
         />
       </StyledDiv>
@@ -36,4 +34,4 @@ class TraitColor extends React.Component<traitProps> {
   }
 }
 
-export default TraitColor;
+export default TraitContent;

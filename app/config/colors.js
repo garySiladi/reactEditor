@@ -4,9 +4,10 @@ const originalColors = {
   accent: '848c8e',
   greyish: 'ccdbdc',
   whitey: 'eff7ff',
-  toolbar: 'd2dde8',
+  toolbar: 'e6f3ff',
   greyhound: 'a1aebb',
   orange: 'f26363',
+  darkOrange: 'cc3737',
   slightGrey: '435043',
   ashes: 'c4d0dc'
 };

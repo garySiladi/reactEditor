@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { baseStep } from '../../config/style-constants';
 import getColor from '../../config/colors';
+import { traitProps } from '.';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -16,22 +17,16 @@ const StyledDiv = styled.div`
   }
 `;
 
-type Props = {};
-
-type State = {};
-
-class TraitPadding extends React.Component {
+class TraitPadding extends React.Component<traitProps> {
   handleChange = event => {
-    this.setState({
-      padding: event.target.value
-    });
+    this.props.changeComponentTrait('padding', event.target.value);
   };
   render() {
     return (
       <StyledDiv>
         <input
           type="number"
-          value={this.props.traitValue.match(/\d+/)[0]}
+          defaultValue={this.props.traitValue}
           onChange={this.handleChange}
           step="0.1"
           min="0"

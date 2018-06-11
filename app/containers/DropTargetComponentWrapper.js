@@ -6,7 +6,8 @@ import DropTargetComponent from '../components/DropTargetComponent';
 
 function mapStateToProps(state) {
   return {
-    hierarchy: state.projectStructure.hierarchy
+    hierarchy: state.projectStructure.hierarchy,
+    selectedComponent: state.selectedComponent
   };
 }
 
