@@ -24,19 +24,16 @@ type Props = {
 const StyledHeaderCategoryWrapper = styled.div`
   padding: ${baseStep(-2)};
   display: flex;
-  flex-basis: 30px;
+  min-height: 20px;
   border-bottom: 1px solid ${getColor('greyhound')};
 `;
 
 const StyledHeaderCategory = styled.div`
   font-family: Titillium Web;
   margin-right: ${baseStep(0)};
-  padding-bottom: ${baseStep(-4)};
   transition: 0.2s color;
-  cursor: pointer;
   ${getTypography(-1)};
-  border-bottom: 1px solid
-    ${props => (props.selected ? getColor('secondary') : 'transparent')};
+  cursor: pointer;
   color: ${props => getColor(props.selected ? 'secondary' : 'greyhound')};
 
   &:hover {

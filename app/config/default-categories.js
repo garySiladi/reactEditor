@@ -1,7 +1,7 @@
 import {
   COMPONENTS,
-  CONTAINERS,
-  CUSTOM
+  CONTAINERS
+  // CUSTOM
 } from '../types/componentSelectorHeader';
 
 export default [
@@ -10,8 +10,8 @@ export default [
   },
   {
     categoryName: CONTAINERS
-  },
-  {
-    categoryName: CUSTOM
   }
+  // {
+  //   categoryName: CUSTOM
+  // }
 ];

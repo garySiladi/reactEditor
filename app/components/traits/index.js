@@ -6,14 +6,22 @@ import TraitPadding from './TraitPadding';
 import TraitMargin from './TraitMargin';
 import TraitFontSize from './TraitFontSize';
 import TraitContent from './TraitContent';
+import TraitBackgroundURL from './TraitBackgroundURL';
+import TraitHeight from './TraitHeight';
+import TraitWidth from './TraitWidth';
+import TraitClick from './TraitClick';
 
 export const traits = {
   color: TraitColor,
   padding: TraitPadding,
   margin: TraitMargin,
   backgroundColor: TraitBackgroundColor,
+  backgroundURL: TraitBackgroundURL,
   fontSize: TraitFontSize,
-  content: TraitContent
+  content: TraitContent,
+  height: TraitHeight,
+  width: TraitWidth,
+  click: TraitClick
 };
 
 export const traitViewnames = {
@@ -21,8 +29,12 @@ export const traitViewnames = {
   padding: 'PADDING',
   margin: 'MARGIN',
   backgroundColor: 'BACKGROUND COLOR',
+  backgroundURL: 'IMAGE',
   fontSize: 'TEXT SIZE',
-  content: 'CONTENT'
+  content: 'CONTENT',
+  height: 'HEIGHT',
+  width: 'WIDTH',
+  click: 'REDIRECT'
 };
 
 export type traitProps = {

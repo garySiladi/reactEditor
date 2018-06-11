@@ -36,6 +36,13 @@ const LivePreviewWrapped = styled.div`
     linear-gradient(to bottom, ${getColor('toolbar')} 1px, transparent 1px);
 `;
 
+const StyledWrapperDiv = styled.div`
+  background: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 type Props = {
   selectedComponent: any
 };
@@ -48,21 +55,40 @@ export default class ListView extends React.Component<Props> {
     if (selectedComponent.type === 'container') return null;
     const { componentData = [] } = selectedComponent;
     const createProps = componentData.reduce((obj, item) => {
-      const modValue = !Number.isNaN(Number(item.value))
-        ? `${item.value}em`
-        : item.value;
+      const modValue =
+        !Number.isNaN(Number(item.value)) && item.name !== 'backgroundURL'
+          ? `${item.value}em`
+          : item.value;
       return Object.assign({}, obj, { [item.name]: modValue });
     }, {});
+    const maxValues = { maxHeight: '100%', maxWidth: '100%' };
+    const imageObject =
+      createProps.backgroundURL && createProps.backgroundURL !== ''
+        ? {
+            src: createProps.backgroundURL
+          }
+        : {};
+    const clickObject =
+      createProps.click && createProps.click !== ''
+        ? {
+            href: createProps.click,
+            target: '_blank'
+          }
+        : {};
     const selectedElementPreview = React.createElement(
       selectedComponent.componentHTMLTag,
-      { style: createProps },
+      {
+        style: { ...maxValues, ...createProps },
+        ...imageObject,
+        ...clickObject
+      },
       createProps.content
     );
     return (
       <StyledWrapper>
         <StyledHeader>LIVE PREVIEW</StyledHeader>
         <LivePreviewWrapped>
-          <div>{selectedElementPreview}</div>
+          <StyledWrapperDiv>{selectedElementPreview}</StyledWrapperDiv>
         </LivePreviewWrapped>
       </StyledWrapper>
     );

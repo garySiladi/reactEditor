@@ -16,9 +16,21 @@ const PlasmaEditorStyled = styled.div`
   align-items: center;
 `;
 
+const WrappedInfo = styled.div`
+  background: white;
+  padding: 1em;
+`;
+
+const WrappedInfoTitle = styled.div`
+  display: inline-block;
+  width: 300px;
+`;
+
 type Props = {
   isPlasmaSelected: boolean,
-  hierarchy: any
+  hierarchy: any,
+  author: string,
+  projectName: string
 };
 
 export default class PlasmaEditor extends Component<Props> {
@@ -56,7 +68,18 @@ export default class PlasmaEditor extends Component<Props> {
       parentId: 'parentID'
     });
     if (!this.props.isPlasmaSelected)
-      return <PlasmaEditorStyled>KORTE</PlasmaEditorStyled>;
+      return (
+        <WrappedInfo>
+          <div>
+            <WrappedInfoTitle>PROJECT NAME: </WrappedInfoTitle>
+            {this.props.projectName}
+          </div>
+          <div>
+            <WrappedInfoTitle>PROJECT AUTHOR: </WrappedInfoTitle>
+            {this.props.author}
+          </div>
+        </WrappedInfo>
+      );
     return (
       <PlasmaEditorStyled>
         <div style={{ overflow: 'hidden', clear: 'both' }}>

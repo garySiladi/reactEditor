@@ -1,7 +1,7 @@
 // @flow
 import { PROJECT_OPENED } from '../actions/isProjectOpened';
 
-export default function isProjectOpened(state: boolean = true, action: any) {
+export default function isProjectOpened(state: boolean = false, action: any) {
   switch (action.type) {
     case PROJECT_OPENED:
       return action.data;

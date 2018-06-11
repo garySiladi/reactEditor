@@ -11,8 +11,9 @@ const FullScreenBlur = styled.div`
   width: 100vw;
   position: fixed;
   display: flex;
+  z-index: 10;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(34, 34, 34, 0.8);
 `;
 
 const StyledWelcomeComponent = styled.div`

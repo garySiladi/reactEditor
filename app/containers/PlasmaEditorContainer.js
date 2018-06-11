@@ -9,7 +9,9 @@ import PlasmaEditor from '../components/PlasmaEditor';
 function mapStateToProps(state) {
   return {
     isPlasmaSelected: state.mainFrameSelector === PLASMA_VIEW,
-    hierarchy: state.projectStructure.hierarchy
+    hierarchy: state.projectStructure.hierarchy,
+    projectName: state.projectStructure.projectName,
+    author: state.projectStructure.author
   };
 }
 
