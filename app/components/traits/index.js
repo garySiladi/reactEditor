@@ -10,6 +10,8 @@ import TraitBackgroundURL from './TraitBackgroundURL';
 import TraitHeight from './TraitHeight';
 import TraitWidth from './TraitWidth';
 import TraitClick from './TraitClick';
+import TraitAlignItems from './TraitAlignItems';
+import TraitJustifyContent from './TraitJustifyContent';
 
 export const traits = {
   color: TraitColor,
@@ -21,7 +23,9 @@ export const traits = {
   content: TraitContent,
   height: TraitHeight,
   width: TraitWidth,
-  click: TraitClick
+  click: TraitClick,
+  justifyContent: TraitJustifyContent,
+  alignItems: TraitAlignItems
 };
 
 export const traitViewnames = {
@@ -34,7 +38,9 @@ export const traitViewnames = {
   content: 'CONTENT',
   height: 'HEIGHT',
   width: 'WIDTH',
-  click: 'REDIRECT'
+  click: 'REDIRECT',
+  justifyContent: 'MAIN ALIGN',
+  alignItems: 'ALIGN'
 };
 
 export type traitProps = {

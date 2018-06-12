@@ -39,6 +39,10 @@ const StyledLogo = styled.img`
   margin: ${baseStep(0)} ${baseStep(5)};
 `;
 
+const StyledInputWrapper = styled.div`
+  margin: ${baseStep(0)} ${baseStep(5)};
+`;
+
 const StyledMenu = styled.div`
   background-color: ${getColor('whitey')};
   padding: ${baseStep(2)};
@@ -73,8 +77,19 @@ type Props = {
 };
 
 export default class WelcomeWindow extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'sample_name',
+      author: 'student'
+    };
+  }
   handleClick = () => {
-    this.props.createProject({ projectName: 'myApp', id: uniqueString() });
+    this.props.createProject({
+      projectName: this.state.name,
+      author: this.state.author,
+      id: uniqueString()
+    });
     this.props.openProject();
   };
   render() {
@@ -87,6 +102,22 @@ export default class WelcomeWindow extends Component<Props> {
           <StyledLogo src={myImage} alt="App Logo" />
           <StyledHeaderComponent>Plasmoid</StyledHeaderComponent>
           <StyledMenu>
+            <StyledInputWrapper>
+              <div>Project name:</div>
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={ev => this.setState({ name: ev.target.value })}
+              />
+            </StyledInputWrapper>
+            <StyledInputWrapper>
+              <div>Project author:</div>
+              <input
+                type="text"
+                value={this.state.author}
+                onChange={ev => this.setState({ author: ev.target.value })}
+              />
+            </StyledInputWrapper>
             <StyledButton onClick={() => this.handleClick()}>
               <FontAwesome name="plus" size="2x" />
               <span>New project</span>

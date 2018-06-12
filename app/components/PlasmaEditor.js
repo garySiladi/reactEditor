@@ -21,6 +21,11 @@ const WrappedInfo = styled.div`
   padding: 1em;
 `;
 
+const WrappedLive = styled.div`
+  max-height: 540px;
+  overflow: scroll;
+`;
+
 const WrappedInfoTitle = styled.div`
   display: inline-block;
   width: 300px;
@@ -28,6 +33,8 @@ const WrappedInfoTitle = styled.div`
 
 type Props = {
   isPlasmaSelected: boolean,
+  isInfoSelected: boolean,
+  isLiveViewSelected: boolean,
   hierarchy: any,
   author: string,
   projectName: string
@@ -62,12 +69,60 @@ export default class PlasmaEditor extends Component<Props> {
     );
   };
 
+  createLiveList = (component: any) => {
+    const { data } = component;
+    const {
+      // viewName,
+      id,
+      // type,
+      // parentID,
+      // componentID,
+      componentData,
+      componentHTMLTag
+    } = data;
+    const createProps = componentData.reduce((obj, item) => {
+      const modValue =
+        !Number.isNaN(Number(item.value)) &&
+        item.name !== 'backgroundURL' &&
+        item.name !== 'fontWeight'
+          ? `${item.value}em`
+          : item.value;
+      return Object.assign({}, obj, { [item.name]: modValue });
+    }, {});
+    const maxValues = { maxHeight: '100%', maxWidth: '100%' };
+    const imageObject =
+      createProps.backgroundURL && createProps.backgroundURL !== ''
+        ? {
+            src: createProps.backgroundURL
+          }
+        : {};
+    const clickObject =
+      createProps.click && createProps.click !== ''
+        ? {
+            href: createProps.click,
+            target: '_blank'
+          }
+        : {};
+    return React.createElement(
+      componentHTMLTag,
+      {
+        key: id,
+        style: { ...maxValues, ...createProps },
+        ...imageObject,
+        ...clickObject
+      },
+      component.children.length !== 0
+        ? component.children.map(element => this.createLiveList(element))
+        : createProps.content
+    );
+  };
+
   render() {
     const hierarchyArray = arrayToTree(this.props.hierarchy, {
       id: 'id',
       parentId: 'parentID'
     });
-    if (!this.props.isPlasmaSelected)
+    if (this.props.isInfoSelected)
       return (
         <WrappedInfo>
           <div>
@@ -80,9 +135,15 @@ export default class PlasmaEditor extends Component<Props> {
           </div>
         </WrappedInfo>
       );
+    if (this.props.isLiveViewSelected)
+      return (
+        <WrappedLive>
+          <div>{this.createLiveList(hierarchyArray[0])}</div>
+        </WrappedLive>
+      );
     return (
       <PlasmaEditorStyled>
-        <div style={{ overflow: 'hidden', clear: 'both' }}>
+        <div style={{ overflow: 'scroll', clear: 'both', maxHeight: 540 }}>
           {this.createList(hierarchyArray[0])}
         </div>
       </PlasmaEditorStyled>

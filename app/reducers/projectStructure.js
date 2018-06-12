@@ -15,7 +15,10 @@ const initialProjectInfo = {
       viewName: ' ',
       id: '0',
       type: 'container',
-      componentData: [],
+      componentData: [
+        { name: 'display', value: 'flex' },
+        { name: 'flexDirection', value: 'column' }
+      ],
       componentHTMLTag: 'div',
       parentID: null
     }

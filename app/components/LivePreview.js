@@ -37,7 +37,7 @@ const LivePreviewWrapped = styled.div`
 `;
 
 const StyledWrapperDiv = styled.div`
-  background: antiquewhite;
+  border: 2px solid antiquewhite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +56,9 @@ export default class ListView extends React.Component<Props> {
     const { componentData = [] } = selectedComponent;
     const createProps = componentData.reduce((obj, item) => {
       const modValue =
-        !Number.isNaN(Number(item.value)) && item.name !== 'backgroundURL'
+        !Number.isNaN(Number(item.value)) &&
+        item.name !== 'backgroundURL' &&
+        item.name !== 'fontWeight'
           ? `${item.value}em`
           : item.value;
       return Object.assign({}, obj, { [item.name]: modValue });

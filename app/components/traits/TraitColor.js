@@ -20,6 +20,12 @@ const StyledDiv = styled.div`
 `;
 
 class TraitColor extends React.Component<traitProps> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTransparent: this.props.traitValue === 'transparent'
+    };
+  }
   handleChange = event => {
     this.props.changeComponentTrait('color', event.target.value);
   };
@@ -30,6 +36,16 @@ class TraitColor extends React.Component<traitProps> {
           type="color"
           value={this.props.traitValue}
           onChange={this.handleChange}
+        />
+        <input
+          type="checkbox"
+          checked={this.state.isTransparent}
+          onChange={() => {
+            if (!this.state.isTransparent) {
+              this.props.changeComponentTrait('color', 'transparent');
+            }
+            this.setState({ isTransparent: !this.state.isTransparent });
+          }}
         />
       </StyledDiv>
     );

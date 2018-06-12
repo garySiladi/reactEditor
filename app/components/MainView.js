@@ -24,6 +24,7 @@ const MainViewStyled = styled.div`
 `;
 
 const LeftSideStyled = styled.div`
+  background: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,6 +33,7 @@ const LeftSideStyled = styled.div`
 
 const ComponentSelectorStyled = styled.div`
   flex: 0 0 200px;
+  background: ${getColor('toolbar')};
   border-top: 1px solid ${getColor('greyhound')};
 `;
 
